@@ -1,0 +1,8 @@
+@startuml
+
+actor "Bob" as Bob
+
+Bob --> (Walks into a Room)
+(Walks into a Room) --> (Makes a Choice)
+
+@enduml

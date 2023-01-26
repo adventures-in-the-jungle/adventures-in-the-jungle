@@ -34,7 +34,7 @@ abstract class logic.Protagonist {
 interface logic.InteractiveProtagonist
 interface logic.EdibleProtagonist
 
-class Animal {
+class logic.Animal {
 
 }
 

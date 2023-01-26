@@ -1,0 +1,40 @@
+@startuml
+
+'entity Game
+'entity Player
+
+entity Scenario {
+    * SCENARIO_ID: INT PK
+    * SCENARIO_NORTH_AVAILABLE: BOOL
+    * SCENARIO_SOUTH_AVAILABLE: BOOL
+    * SCENARIO_EAST_AVAILABLE: BOOL
+    * SCENARIO_WEST_AVAILABLE: BOOL
+    * SCENARIO_NORTH_ITEM_AVAILABLE: BOOL
+    * SCENARIO_SOUTH_ITEM_AVAILABLE: BOOL
+    * SCENARIO_EAST_ITEM_AVAILABLE: BOOL
+    * SCENARIO_WEST_ITEM_AVAILABLE: BOOL
+}
+
+entity ScenarioChoice {
+    * SCENARIO_ID: INT FK (COMPOSITE KEY)
+    * CHOICE_ID: INT FK (COMPOSITE KEY)
+}
+
+entity ScenarioItem {
+   * SCENARIO_ID: INT FK (COMPOSITE KEY)
+   * ITEM_ID: INT FK (COMPOSITE KEY)
+}
+
+entity Choice
+entity Item
+
+'Game ||--o{ Player
+'Player ||--|| Scenario
+
+Scenario ||--o{ ScenarioChoice
+ScenarioChoice }o--|| Choice
+
+Scenario ||--o{ ScenarioItem
+ScenarioItem }o--|| Item
+
+@enduml
