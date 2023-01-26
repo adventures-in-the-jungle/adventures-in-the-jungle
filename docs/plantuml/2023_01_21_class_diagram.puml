@@ -1,0 +1,67 @@
+@startuml
+
+class Main {
+    + {static} main(): void
+    + currentGame: Game
+}
+
+enum control.Command {
+    WALK
+    CLIMB
+    TAKE
+    USE
+    SLEEP
+}
+
+' Serializable Stuff
+class logic.Game {
+    - {static} instance: Game
+    + {static} getInstance: Game
+}
+
+class logic.Player {
+    - username: String
+    - currentRoom: Room
+}
+
+logic.Player --> logic.Scenario
+logic.Player --> logic.Item
+
+abstract class logic.Protagonist {
+
+}
+
+interface logic.InteractiveProtagonist
+interface logic.EdibleProtagonist
+
+class Animal {
+
+}
+
+abstract class logic.Item {
+    - name: String
+    - type: String
+    - description: String
+}
+
+class logic.Scenario {
+    + options: HashMap<Choice>
+}
+
+class logic.Choice {
+    - prompt: String
+    - items: HashMap<Item>
+
+    + Choice()
+}
+
+Main --> logic.Game
+
+logic.Game --> logic.Player
+logic.Game --> logic.Scenario
+
+'logic.Room <|-- logic.Scenario
+logic.Scenario --> logic.Choice
+logic.Choice --> logic.Item
+
+@enduml
