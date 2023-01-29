@@ -12,6 +12,3 @@ buildNumber.properties
 
 # Exclude IntelliJ IDEA Project Files
 /.idea
-
-# Log4J Logfile
-logs/
