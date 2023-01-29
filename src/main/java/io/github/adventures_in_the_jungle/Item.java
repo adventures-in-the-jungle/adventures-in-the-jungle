@@ -1,10 +1,15 @@
 package io.github.adventures_in_the_jungle;
 
 public class Item {
+    //Item ID
     private int item_id;
+    //Item Name
     private String item_name;
+    //Item Room Id
     private int room_id;
+    //Item Points
     private int item_points;
+    //Item Type
     private int item_type;
 
 
@@ -26,27 +31,27 @@ public class Item {
     public void setItem_name(String item_name) {
         this.item_name = item_name;
     }
-    //Getter for Itme R
+    //Getter for Room ID
     public int getRoom_id() {
         return room_id;
     }
-
+    //Setter for Room ID
     public void setRoom_id(int room_id) {
         this.room_id = room_id;
     }
-
+    //Getter for Item Points
     public int getItem_points() {
         return item_points;
     }
-
+    //Setter for Item Points
     public void setItem_points(int item_points) {
         this.item_points = item_points;
     }
-
+    //Getter for Item Type
     public int getItem_type() {
         return item_type;
     }
-
+    //Setter for Item Type
     public void setItem_type(int item_type) {
         this.item_type = item_type;
     }

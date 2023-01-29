@@ -4,14 +4,15 @@ import java.util.HashMap;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import java.sql.SQLException;
 
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
+public class Main{
 
-    public HashMap<String, Room> rooms;
+   // public HashMap<String, Room> rooms;
 
     public static void main(String[] args) {
 
@@ -24,7 +25,7 @@ public class Main {
         logger.log(Level.ERROR, "Error!");
         logger.log(Level.INFO, "Info!");
 
-        int SIZE = 5;
+       // int SIZE = 5;
 
         System.out.println("Press enter to create the map");
         scanner.nextLine();
@@ -49,6 +50,10 @@ public class Main {
                 System.out.println("Not the End Room");
         }
         */
+
+        SQLconnector madatabase = new SQLconnector();
+
+
     }
 }
 
