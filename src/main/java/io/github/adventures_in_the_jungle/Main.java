@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Main {
 
