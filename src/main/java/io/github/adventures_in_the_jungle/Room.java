@@ -38,6 +38,7 @@ public class Room {
 
     /**
      * Initializes a new instance of Room.
+     *
      * @param x The coordinate that identifies the X location of the room on the cartelization plane.
      * @param y The coordinate that identifies the Y location of the room on the cartelization plane.
      */
@@ -48,6 +49,7 @@ public class Room {
 
     /**
      * Fetches the coordinates of the Room object as a cartesian coordinate.
+     *
      * @param x
      * @param y
      * @return

@@ -1,6 +1,7 @@
 package io.github.adventures_in_the_jungle;
 
 // Map needs to have its own class, if we say Game that is too broad of a class name when this class is creating the map and setting room points
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -31,8 +32,7 @@ public class Map {
         this.hotel = new ArrayList<ArrayList<Room>>();
 
         // For every Y (or floor) that we want, we can create a new array list containing its children.
-        for(int i = 0; i < 10; i++)
-        {
+        for (int i = 0; i < 10; i++) {
             ArrayList<Room> floor = new ArrayList<Room>();
             this.hotel.add(floor);
         }
