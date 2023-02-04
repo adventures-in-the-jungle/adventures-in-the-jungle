@@ -1,4 +1,4 @@
-package io.github.adventures_in_the_jungle;
+package io.github.adventures_in_the_jungle.logic.database;
 import java.sql.*;
 
 public class SQLconnector {

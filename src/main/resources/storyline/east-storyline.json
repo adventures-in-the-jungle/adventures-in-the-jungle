@@ -1,0 +1,86 @@
+{
+  "plot": "You are walking east. You travel so far you reach the ural mountains. You encounter a villager who greets you and offers you a vat of soup. You may either accept or decline the soup (to add it to your inventory), then you may go either left or right.",
+  "choices": {
+    "left": {
+      "plot": "You reach the top of the mountain, you encounter a pair of skis. You realize that your journey downward may be easier if you take the skis. However, you are wary of whether or not someone will come chasing you down shortly thereafter. Either way, you must proceed down the mountain. Which path will you choose?",
+      "choices": {
+        "take": {
+          "plot": "Your suspicions were correct. Now, however, rather than a person coming after you, an entire pack of wild dogs is scrambling your way. You encounter a gun left at the bottom of the hill. You realize your life may be in danger, but you realize that you are not in the United States and the gun laws may be different in the country you are in.",
+          "choices": {
+            "take": {
+              "plot": "You end up taking the gun and shoot down the dogs. However, you get chased down by an angry pack of wild villagers, suing you with lawsuits. You realize you are quickly becoming exhausted and don't want to die from hunger. What do you do?",
+              "choices": {
+                "accept": {
+                  "plot": "Thankfully, you accepted the lawsuit, so the villagers stopped chasing after you. Unfortunately, however, you lost the lawsuit and are still subject to a lifetime in national prison. You lost.",
+                  "won": false
+                },
+                "deny": {
+                  "plot": "Unfortunately, the angry sued you and you ended up losing the lawsuit. You ended up the rest of your weary life in prison. You lost.",
+                  "won": false
+                },
+                "eat": {
+                  "plot": "The adventure continues. You eat the food in your inventory managed to escape in time. You won.　おめでとうございます！",
+                  "won": true
+                }
+              },
+              "items": {},
+              "animals": {},
+              "villagers": {}
+            },
+            "leave": {
+              "plot": "Unfortunately, the pack of wild dogs got the better of you, and you ended up serving as someone else's lunch. Fortunately, however dogs surely did appreciate it.",
+              "won": false
+            }
+          },
+          "items": {},
+          "animals": "wild dogs",
+          "villagers": {}
+        },
+        "leave": {
+          "plot": "You end up rolling down the hill. Thankfully, it wasn't as bad as you initially thought. However, you are still very exhausted and end up resting in a snowbank. You rest there for the night only to find yourself dead from hypothermia. You lost.",
+          "won": false
+        }
+      },
+      "items": {
+        "skis": "wearable"
+      },
+      "animals": {},
+      "villagers": {}
+    },
+    "right": {
+      "plot": "You go right and find yourself in a winter wonderland of an icicle village. You encounter a villager who offers you a job. You may either accept or decline the job.",
+      "choices": {
+        "accept": {
+          "plot": "You accepted the job, however, the job seems to more challenging than you initially thought, and the computer training is quite tiresome and pointless. To make matters worse, the government found out that you are working without a visa and you end up in immigration court. You can either accept the charges or speak with an embassy.",
+          "choices": {
+            "accept": {
+              "plot": "You decided to accept the charges of the lawsuit, unfortunately you lost the lawsuit and are forever detained in a foreign prison. You lost!",
+              "won": false
+            },
+            "speak": {
+              "plot": "You were able to get access to your embassy. Unfortunately, however, the embassy was raided and you are perminatnely trapped in the country. You lost!",
+              "won": false
+            }
+          },
+          "items": {},
+          "animals": {},
+          "villagers": {}
+        },
+        "decline": {}
+      },
+      "items": {},
+      "animals": {},
+      "villagers": {
+        "villager": "interactive"
+      }
+    }
+  },
+  "items": {
+    "soup": "food"
+  },
+  "animals": {},
+  "villagers": {
+    "villager": "intractable"
+  }
+}
+

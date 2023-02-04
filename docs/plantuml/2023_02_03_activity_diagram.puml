@@ -1,0 +1,16 @@
+@startuml
+
+start
+
+:You were going on a hike with your buddies.\nYou bonked you head on a mushroom that was actually a piano in disguise.\nYou awake on a bed of banana leaves.\nAll you can remember is that you were sent out to check out a noise within the jungle.\nYou stand up and take a look at your surroundings.\nYou are lost in the jungle.;
+
+if (Look Left) then (Move)
+    :You encounter a pack of wild vampire monkeys.\nYou realize that ;
+else if (Look Right) then (Move)
+    :Move Right;
+endif
+
+
+end
+
+@enduml
