@@ -11,13 +11,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
         Logger logger = LogManager.getRootLogger();
+        Game game = Game.getInstance();
+        Setup.SQLSetup(game);
+
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Press enter to create the map");
         scanner.nextLine();
-
-        Game game = Game.getInstance();
         //Setup.JSONSetup(game);
 
     }

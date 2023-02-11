@@ -21,6 +21,11 @@ public abstract class Setup {
 
     }
 
+    public static void SQLSetup(Game m_game)
+    {
+
+    }
+
     public static void JSONSetup(Game m_game) {
 
         FileReader storyFile = null;

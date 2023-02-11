@@ -1,6 +1,7 @@
 package io.github.adventures_in_the_jungle.logic.game;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Game implements Serializable {
 
@@ -17,5 +18,9 @@ public class Game implements Serializable {
         if (instance == null) instance = new Game();
         return instance;
     }
+
+    private ArrayList<Scenario> scenarios;
+    private ArrayList<Item> inventory;
+    private Scenario currentScenario;
 
 }
