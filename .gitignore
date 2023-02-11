@@ -12,8 +12,13 @@ buildNumber.properties
 
 # Exclude IntelliJ IDEA Project Files
 /.idea
+*.iml
 
 # Exclude Eclipse Project Files
 /.classpath
 /.project
 /.settings/
+
+# Exclude Log Files
+/logs
+log*
