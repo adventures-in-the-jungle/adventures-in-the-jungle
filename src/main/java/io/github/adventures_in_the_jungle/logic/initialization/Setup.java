@@ -49,4 +49,16 @@ public abstract class Setup {
 
     }
 
+    public static String[][] GetScenarioData(){
+        String[][] Messages = {
+                {"1", "2", "3", "4"},//Room ID (Col 0)
+                {"RoomOne", "RoomTwo", "RoomThree","RoomFour"},//Room name (Col 1)
+                {"Cold-1", "Cold-2", "Cold-3", "Cold-4"},//north Route (Col 2)
+                {"HOT-1", "HOT-2", "HOT-3", "HOT-4"},//South Route (Col 3)
+                {"WEST-1", "WEST-2", "WEST-3", "WEST-4"},//WEST Route (Col 4)
+                {"EAST-1", "EAST-2", "EAST-3", "EAST-4"},//EAST Route (Col 5)
+        };
+
+        return Messages;
+    }
 }

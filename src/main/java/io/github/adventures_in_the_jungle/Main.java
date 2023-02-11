@@ -18,7 +18,7 @@ public class Main {
         scanner.nextLine();
 
         Game game = Game.getInstance();
-        Setup.JSONSetup(game);
+        //Setup.JSONSetup(game);
 
     }
 
