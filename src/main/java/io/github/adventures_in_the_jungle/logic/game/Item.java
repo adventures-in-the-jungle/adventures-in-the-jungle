@@ -1,66 +1,62 @@
 package io.github.adventures_in_the_jungle.logic.game;
 
 public class Item {
-    //Item ID
-    private int item_id;
-    //Item Name
-    private String item_name;
-    //Item Room Id
-    private int room_id;
-    //Item Points
-    private int item_points;
-    //Item Type
-    private int item_type;
+    //Verifies one instance.
+    private static final Item INSTANCE = new Item();
 
+    //Count for the items.
+    private int itemCount;
 
-    //Getter for item ID
-    public int getItem_id() {
-        return item_id;
+    //Inventory limit.
+    private String[] items = new String[25];
+
+    //The private constructor for single instance.
+    private Item() {
+        this.itemCount = 0;
     }
 
-    //Setter for item ID
-    public void setItem_id(int item_id) {
-        this.item_id = item_id;
+    //Gets the instance for items.
+    public static Item getInstance() {
+        return INSTANCE;
     }
 
-    //Getter for tem Name
-    public String getItem_name() {
-        return item_name;
+    // Method to add an item to the array of items.
+    public void addItem(String item) {
+        String[] newItems = new String[itemCount + 1];
+        System.arraycopy(items, 0, newItems, 0, itemCount);
+        newItems[itemCount] = item;
+        items = newItems;
+        itemCount++;
     }
 
-    //Setter for item name
-    public void setItem_name(String item_name) {
-        this.item_name = item_name;
+    //Method to remove an item from the array.
+    public void removeItem(String item) {
+        int index = -1;
+        for (int i = 0; i < itemCount; i++) {
+            if (items[i].equals(item)) {
+                index = i;
+                //Displays in the console what item was removed.
+                System.out.println("You lost: " + item);
+                break;
+            }
+        }
+        //This method removes the item from the array and subtracts the item count.
+        if (index != -1) {
+            String[] newItems = new String[itemCount - 1];
+            System.arraycopy(items, 0, newItems, 0, index);
+            System.arraycopy(items, index + 1, newItems, index, itemCount - index - 1);
+            items = newItems;
+            itemCount--;
+        }
     }
 
-    //Getter for Room ID
-    public int getRoom_id() {
-        return room_id;
+    //Method to get the ItemCount.
+    public int getItemCount() {
+        return itemCount;
     }
 
-    //Setter for Room ID
-    public void setRoom_id(int room_id) {
-        this.room_id = room_id;
+    //Method to get the items in the array.
+    public String[] getItems() {
+        return items;
     }
-
-    //Getter for Item Points
-    public int getItem_points() {
-        return item_points;
-    }
-
-    //Setter for Item Points
-    public void setItem_points(int item_points) {
-        this.item_points = item_points;
-    }
-
-    //Getter for Item Type
-    public int getItem_type() {
-        return item_type;
-    }
-
-    //Setter for Item Type
-    public void setItem_type(int item_type) {
-        this.item_type = item_type;
-    }
-
 }

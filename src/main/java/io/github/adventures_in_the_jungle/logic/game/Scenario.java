@@ -147,10 +147,10 @@ public class Scenario {
 
         return choices;
     }
-    choicesScenario_D1.add("You throw your rope, it wraps around a tree. You pull yourself out and escape!");
-    //removes rope from items and you lose points.
-    choicesScenario_D1.add("You try to wiggle your way out");
-    scenarios.addScenario(scenariotext_D1,choicesScenario_D1);
+//    choicesScenario_D1.add("You throw your rope, it wraps around a tree. You pull yourself out and escape!");
+//    //removes rope from items and you lose points.
+//    choicesScenario_D1.add("You try to wiggle your way out");
+//    scenarios.addScenario(scenariotext_D1,choicesScenario_D1);
 
     // ArrayList<String> choicesScenario_D1 = new ArrayList<String>();
     //choicesScenario_D1.add("You throw your rope, it wraps around a tree. You pull yourself out and escape!"); enum of USE for ROPE
