@@ -38,7 +38,7 @@ public abstract class Setup {
 
         File databaseFile = new File(AppStoragePaths.GetDBFilePath());
         if (!databaseFile.exists()) {
-            Files.copy(Main.class.getResourceAsStream("default.db"), Paths.get(AppStoragePaths.GetDBFilePath()));
+            Files.copy(Main.class.getResourceAsStream("/default.db"), Paths.get(AppStoragePaths.GetDBFilePath()));
         }
     }
 
