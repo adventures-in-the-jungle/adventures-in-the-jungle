@@ -5,9 +5,6 @@ import io.github.adventures_in_the_jungle.logic.initialization.Setup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Scanner;
-
-
 public class Main {
 
     public static void main(String[] args) {

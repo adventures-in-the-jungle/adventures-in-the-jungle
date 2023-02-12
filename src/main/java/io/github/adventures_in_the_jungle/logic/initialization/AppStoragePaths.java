@@ -1,10 +1,6 @@
 package io.github.adventures_in_the_jungle.logic.initialization;
 
-import io.github.adventures_in_the_jungle.Main;
-
-import java.io.File;
 import java.nio.file.Paths;
-import java.util.Scanner;
 
 public abstract class AppStoragePaths {
 
