@@ -5,8 +5,15 @@ import io.github.adventures_in_the_jungle.logic.game.Game;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import org.apache.logging.log4j.Level;
@@ -15,55 +22,42 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class Setup {
 
-    private static Logger logger;
+    private static final Logger logger = LogManager.getLogger(Setup.class);
 
-    public static void ClassicSetup(Game m_game) {
+    /**
+     * Utility function to set up the initial file structure for the program if it doesn't already exist.
+     *
+     * @throws Exception Thrown if either the default directory failed to create or the template database file failed to copy.
+     */
+    public static void FirstTimeSetup() throws Exception {
+        // Checks if the user home directory exists. If not, create it.
+        File appStorageDirectory = new File(AppStoragePaths.GetAppStorageDir());
+        if (!appStorageDirectory.exists()) {
+            appStorageDirectory.mkdir();
+        }
 
+        File databaseFile = new File(AppStoragePaths.GetDBFilePath());
+        if (!databaseFile.exists()) {
+            Files.copy(Main.class.getResourceAsStream("default.db"), Paths.get(AppStoragePaths.GetDBFilePath()));
+        }
     }
 
-    public static void SQLSetup(Game m_game)
-    {
+    public static void SQLSetup(Game m_game) {
 
-    }
-
-    public static void JSONSetup(Game m_game) {
-
-        FileReader storyFile = null;
+        Connection databaseConnection = null;
 
         try {
-            storyFile = new FileReader(String.valueOf(Main.class.getResourceAsStream("east-storyline.json")));
-        } catch (FileNotFoundException e) {
-            Logger logger = LogManager.getLogger(Setup.class.getName());
-            logger.log(Level.FATAL, "There was an error in accessing the story file for the database! The application will now terminate!");
-            throw new RuntimeException();
+            databaseConnection = DriverManager.getConnection(AppStoragePaths.GetDBConnectionString());
+        } catch (Exception e) {
+            logger.error("The database connection failed!");
+        } finally {
+            if (databaseConnection != null) {
+                try {
+                    databaseConnection.close();
+                } catch (SQLException e) {
+                    logger.error("The database connection failed to close!");
+                }
+            }
         }
-
-        Scanner storyFileReader = new Scanner(storyFile);
-
-        String plot = "";
-
-        while (storyFileReader.hasNextLine()) {
-            plot = plot + storyFileReader.nextLine();
-        }
-
-        storyFileReader.close();
-
-        JSONObject game = new JSONObject(plot);
-
-        System.out.println(game.get("plot"));
-
-    }
-
-    public static String[][] GetScenarioData(){
-        String[][] Messages = {
-                {"1", "2", "3", "4"},//Room ID (Col 0)
-                {"RoomOne", "RoomTwo", "RoomThree","RoomFour"},//Room name (Col 1)
-                {"Cold-1", "Cold-2", "Cold-3", "Cold-4"},//north Route (Col 2)
-                {"HOT-1", "HOT-2", "HOT-3", "HOT-4"},//South Route (Col 3)
-                {"WEST-1", "WEST-2", "WEST-3", "WEST-4"},//WEST Route (Col 4)
-                {"EAST-1", "EAST-2", "EAST-3", "EAST-4"},//EAST Route (Col 5)
-        };
-
-        return Messages;
     }
 }

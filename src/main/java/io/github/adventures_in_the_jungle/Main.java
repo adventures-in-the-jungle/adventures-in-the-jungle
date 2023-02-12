@@ -7,19 +7,19 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
+
 public class Main {
 
     public static void main(String[] args) {
 
         Logger logger = LogManager.getRootLogger();
         Game game = Game.getInstance();
-        Setup.SQLSetup(game);
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Press enter to create the map");
-        scanner.nextLine();
-        //Setup.JSONSetup(game);
+        try {
+            Setup.FirstTimeSetup();
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
 
     }
 
