@@ -22,7 +22,7 @@ public abstract class AppStoragePaths {
      *
      * @return The application logging database path.
      */
-    public static String GetDBFilePath() throws Exception {
+    public static String GetDBFilePath() {
         return Paths.get(GetAppStorageDir() + "/application.db").toAbsolutePath().toString();
     }
 
@@ -31,7 +31,7 @@ public abstract class AppStoragePaths {
      *
      * @return The JDBC connection string associated with the database file.
      */
-    public static String GetDBConnectionString() throws Exception {
+    public static String GetDBConnectionString() {
         return "jdbc:sqlite:" + AppStoragePaths.GetDBFilePath();
     }
 
