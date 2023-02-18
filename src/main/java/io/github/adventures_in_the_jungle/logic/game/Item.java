@@ -1,62 +1,45 @@
 package io.github.adventures_in_the_jungle.logic.game;
 
 public class Item {
-    //Verifies one instance.
-    private static final Item INSTANCE = new Item();
 
-    //Count for the items.
-    private int itemCount;
+    private int itemID;
 
-    //Inventory limit.
-    private String[] items = new String[25];
+    private String itemName;
 
-    //The private constructor for single instance.
-    private Item() {
-        this.itemCount = 0;
+    private int itemDescription;
+
+    private ItemCategory itemDescriptionObject;
+
+    public int getItemID() {
+        return itemID;
     }
 
-    //Gets the instance for items.
-    public static Item getInstance() {
-        return INSTANCE;
+    public Item(int m_itemID, String m_itemName, int m_itemDescription)
+    {
+        this.itemID = m_itemID;
+        this.itemName = m_itemName;
+        this.itemDescription = m_itemDescription;
     }
 
-    // Method to add an item to the array of items.
-    public void addItem(String item) {
-        String[] newItems = new String[itemCount + 1];
-        System.arraycopy(items, 0, newItems, 0, itemCount);
-        newItems[itemCount] = item;
-        items = newItems;
-        itemCount++;
+    public String getItemName() {
+        return itemName;
     }
 
-    //Method to remove an item from the array.
-    public void removeItem(String item) {
-        int index = -1;
-        for (int i = 0; i < itemCount; i++) {
-            if (items[i].equals(item)) {
-                index = i;
-                //Displays in the console what item was removed.
-                System.out.println("You lost: " + item);
-                break;
-            }
-        }
-        //This method removes the item from the array and subtracts the item count.
-        if (index != -1) {
-            String[] newItems = new String[itemCount - 1];
-            System.arraycopy(items, 0, newItems, 0, index);
-            System.arraycopy(items, index + 1, newItems, index, itemCount - index - 1);
-            items = newItems;
-            itemCount--;
-        }
+    public int getItemDescription() {
+        return itemDescription;
     }
 
-    //Method to get the ItemCount.
-    public int getItemCount() {
-        return itemCount;
+    public ItemCategory getItemDescriptionObject() {
+        return itemDescriptionObject;
     }
 
-    //Method to get the items in the array.
-    public String[] getItems() {
-        return items;
+    public void setItemDescriptionObject(ItemCategory itemDescriptionObject) {
+        this.itemDescriptionObject = itemDescriptionObject;
+    }
+
+    @Override
+    public String toString()
+    {
+        return this.itemID + "," + this.itemName + "," + this.itemDescription;
     }
 }

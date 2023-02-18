@@ -18,6 +18,8 @@ public class Main {
             logger.error(e.getMessage());
         }
 
+        Setup.SQLSetup(game);
+
     }
 
 }
