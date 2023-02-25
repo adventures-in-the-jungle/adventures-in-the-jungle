@@ -14,9 +14,6 @@ public class Choice {
 
     private String choiceFeedback;
 
-    // TODO: Add Object-Relational Mapping for the Scenario associated with a Choice.
-    // TODO: Add Object-Relational Mapping for the Item associated with a Choice.
-
     public Choice(int m_choiceID, String m_choiceText, int m_choiceLeadsTo, int m_choiceFetchableItem, int m_choiceUsableItem, String m_choiceFeedback)
     {
         this.choiceID = m_choiceID;
@@ -39,12 +36,35 @@ public class Choice {
         return choiceLeadsTo;
     }
 
+    public Scenario getChoiceLeadsToObject()
+    {
+        Game game = Game.getInstance();
+        Scenario scenario = game.scenarioHashMap.get(this.getChoiceID());
+
+        return scenario;
+    }
+
     public int getChoiceFetchableItem() {
         return choiceFetchableItem;
     }
 
+    public Item getChoiceFetchableItemObject()
+    {
+        Game game = Game.getInstance();
+        Item item = game.itemHashMap.get(this.getChoiceFetchableItem());
+
+        return item;
+    }
     public int getChoiceUsableItem() {
         return choiceUsableItem;
+    }
+
+    public Item getChoiceUsableItemObject()
+    {
+        Game game = Game.getInstance();
+        Item item = game.itemHashMap.get(this.getChoiceUsableItem());
+
+        return item;
     }
 
     public String getChoiceFeedback() {
