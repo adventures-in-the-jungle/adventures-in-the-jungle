@@ -33,5 +33,5 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: adventures-in-the-jungle.jar
+          name: output.zip
           path: /home/runner/work/adventures-in-the-jungle/adventures-in-the-jungle/target/*.jar
