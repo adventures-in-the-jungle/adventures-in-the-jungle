@@ -42,9 +42,9 @@
 
 - [X] Use of dates and times in your application
     - [X] Consider logging output to a database/flat file
-- [ ] Implementation of a custom calendar in your application
+- [x] Implementation of a custom calendar in your application
     - [ ] Consider special things/displays occurring on Holidays or different seasons
-- [ ] Proper use of String localization
+- [x] Proper use of String localization
     - [ ] Use of a resource bundle
 - [ ] At least one date calculation
 

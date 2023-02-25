@@ -82,7 +82,9 @@ public class Main {
             // the currentScenario object.
             ArrayList<Choice> choices = currentScenario.getChoiceCollection();
 
-            // Determine if the choices involve food (if the scenario has a usable item).
+            // TODO Determine if the choices involve food (if the scenario has a usable item).
+
+            // Create a do-while loop to validate the user input for the choices.
 
             boolean userInputIsValid = false;
 
