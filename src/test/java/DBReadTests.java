@@ -1,3 +1,4 @@
+import io.github.adventures_in_the_jungle.logic.database.objects.*;
 import io.github.adventures_in_the_jungle.logic.game.*;
 import io.github.adventures_in_the_jungle.logic.initialization.AppStoragePaths;
 import io.github.adventures_in_the_jungle.logic.initialization.Setup;
