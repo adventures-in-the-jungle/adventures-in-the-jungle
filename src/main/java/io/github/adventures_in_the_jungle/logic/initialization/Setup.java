@@ -13,9 +13,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * Class that contains helper methods to get a game up and running.
+ */
 public abstract class Setup {
 
+    /**
+     * Represents the logger object associated with the class.
+     */
     private static final Logger logger = LogManager.getLogger(Setup.class);
 
     /**
@@ -36,6 +43,12 @@ public abstract class Setup {
         }
     }
 
+    /**
+     * Utility function to populate the passed in game object with collections that correspond to the objects in the database.
+     * This method represents the object-relational-mapper code and is called once soon after the application is started.
+     *
+     * @param m_game The passed-in singleton instance of Game.
+     */
     public static void SQLSetup(Game m_game) {
 
         String connectionString = AppStoragePaths.GetDBConnectionString();
@@ -43,46 +56,49 @@ public abstract class Setup {
 
         DatabaseConnection databaseConnection = new DatabaseConnection();
 
-        HashMap<Integer, ItemCategory> itemCategoryHashMap = getItemCategoryHashMap(databaseConnection);
+        m_game.itemCategoryHashMap = getItemCategoryHashMap(databaseConnection);
 
-        for (int i = 1; i <= itemCategoryHashMap.size(); i++) {
-            System.out.println("itemCategoryHashMap Key: " + i);
-            System.out.println("itemCategoryHashMap Value: " + itemCategoryHashMap.get(i).toString());
+        for (Map.Entry<Integer, ItemCategory> itemCategory : m_game.itemCategoryHashMap.entrySet()) {
+            System.out.println("itemCategoryHashMap Key: " + itemCategory.getKey());
+            System.out.println("itemCategoryHashMap Value: " + itemCategory.getValue());
         }
 
-        HashMap<Integer, Item> itemHashMap = getItemHashMap(databaseConnection);
+        m_game.itemHashMap = getItemHashMap(databaseConnection);
 
-        for (int i = 1; i <= itemHashMap.size(); i++) {
-            System.out.println("itemHashMap Key: " + i);
-            System.out.println("itemHashMap Value: " + itemHashMap.get(i).toString());
+        for (Map.Entry<Integer, Item> item : m_game.itemHashMap.entrySet()) {
+            System.out.println("itemHashMap Key: " + item.getKey());
+            System.out.println("itemHashMap Value: " + item.getValue());
         }
 
-        HashMap<Integer, Scenario> scenarioHashMap = getScenarioHashMap(databaseConnection);
+        m_game.scenarioHashMap = getScenarioHashMap(databaseConnection);
 
-        for (int i = 1; i <= itemHashMap.size(); i++) {
-            System.out.println("scenarioHashMap Key: " + i);
-            System.out.println("scenarioHashMap Value: " + scenarioHashMap.get(i).toString());
+        for (Map.Entry<Integer, Scenario> scenario : m_game.scenarioHashMap.entrySet()) {
+            System.out.println("scenarioHashMap Key: " + scenario.getKey());
+            System.out.println("scenarioHashMap Value: " + scenario.getValue());
         }
 
-        HashMap<Integer, Choice> choiceHashMap = getChoiceHashMap(databaseConnection);
+        m_game.choiceHashMap = getChoiceHashMap(databaseConnection);
 
-        for (int i = 1; i <= itemHashMap.size(); i++) {
-            System.out.println("choiceHashMap Key: " + i);
-            System.out.println("choiceHashMap Value: " + choiceHashMap.get(i).toString());
+        for (Map.Entry<Integer, Choice> choice : m_game.choiceHashMap.entrySet()) {
+            System.out.println("choiceHashMap Key: " + choice.getKey());
+            System.out.println("choiceHashMap Value: " + choice.getValue());
         }
 
-        ArrayList<ScenarioChoice> scenarioChoiceArrayList = getScenarioChoiceArrayList(databaseConnection);
+        m_game.scenarioChoiceArrayList = getScenarioChoiceArrayList(databaseConnection);
 
-        for(ScenarioChoice scenarioChoice : scenarioChoiceArrayList)
-        {
+        for (ScenarioChoice scenarioChoice : m_game.scenarioChoiceArrayList) {
             System.out.println(scenarioChoice.toString());
         }
-
     }
 
+    /**
+     * Helper method to create a map of ItemCategory objects based on the values contained in the ITEM_CATEGORY table.
+     *
+     * @param m_databaseConnection The active connection called from the {@link #SQLSetup(Game) SQLSetup} method.
+     * @return The populated map of ItemCategory objects.
+     */
     private static HashMap<Integer, ItemCategory> getItemCategoryHashMap(DatabaseConnection m_databaseConnection) {
-        if (m_databaseConnection == null)
-            m_databaseConnection = new DatabaseConnection();
+        if (m_databaseConnection == null) m_databaseConnection = new DatabaseConnection();
 
         HashMap<Integer, ItemCategory> hashMap = new HashMap<Integer, ItemCategory>();
 
@@ -106,9 +122,14 @@ public abstract class Setup {
         return hashMap;
     }
 
+    /**
+     * Helper method to create a map of Item objects based on the values contained in the ITEM table.
+     *
+     * @param m_databaseConnection The active connection called from the {@link #SQLSetup(Game) SQLSetup} method.
+     * @return The populated map of Item objects.
+     */
     private static HashMap<Integer, Item> getItemHashMap(DatabaseConnection m_databaseConnection) {
-        if (m_databaseConnection == null)
-            m_databaseConnection = new DatabaseConnection();
+        if (m_databaseConnection == null) m_databaseConnection = new DatabaseConnection();
 
         HashMap<Integer, Item> hashMap = new HashMap<Integer, Item>();
 
@@ -132,9 +153,14 @@ public abstract class Setup {
         return hashMap;
     }
 
+    /**
+     * Helper method to create a map of Scenario objects based on the values contained in the SCENARIO table.
+     *
+     * @param m_databaseConnection The active connection called from the {@link #SQLSetup(Game) SQLSetup} method.
+     * @return The populated map of Scenario objects.
+     */
     private static HashMap<Integer, Scenario> getScenarioHashMap(DatabaseConnection m_databaseConnection) {
-        if (m_databaseConnection == null)
-            m_databaseConnection = new DatabaseConnection();
+        if (m_databaseConnection == null) m_databaseConnection = new DatabaseConnection();
 
         HashMap<Integer, Scenario> hashMap = new HashMap<Integer, Scenario>();
 
@@ -160,9 +186,14 @@ public abstract class Setup {
         return hashMap;
     }
 
+    /**
+     * Helper method to create a map of Choice objects based on the values contained in the CHOICE table.
+     *
+     * @param m_databaseConnection The active connection called from the {@link #SQLSetup(Game) SQLSetup} method.
+     * @return The populated map of Choice objects.
+     */
     private static HashMap<Integer, Choice> getChoiceHashMap(DatabaseConnection m_databaseConnection) {
-        if (m_databaseConnection == null)
-            m_databaseConnection = new DatabaseConnection();
+        if (m_databaseConnection == null) m_databaseConnection = new DatabaseConnection();
 
         HashMap<Integer, Choice> hashMap = new HashMap<Integer, Choice>();
 
@@ -190,9 +221,14 @@ public abstract class Setup {
         return hashMap;
     }
 
+    /**
+     * Helper method to create a set of ScenarioChoice objects based on the values contained in the SCENARIO_CHOICE table.
+     *
+     * @param m_databaseConnection The active connection called from the {@link #SQLSetup(Game) SQLSetup} method.
+     * @return The populated set of ScenarioChoice objects.
+     */
     private static ArrayList<ScenarioChoice> getScenarioChoiceArrayList(DatabaseConnection m_databaseConnection) {
-        if (m_databaseConnection == null)
-            m_databaseConnection = new DatabaseConnection();
+        if (m_databaseConnection == null) m_databaseConnection = new DatabaseConnection();
 
         ArrayList<ScenarioChoice> arrayList = new ArrayList<ScenarioChoice>();
 
