@@ -13,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Class that contains helper methods to get a game up and running.
@@ -57,38 +56,10 @@ public abstract class Setup {
         DatabaseConnection databaseConnection = new DatabaseConnection();
 
         m_game.itemCategoryHashMap = getItemCategoryHashMap(databaseConnection);
-
-        for (Map.Entry<Integer, ItemCategory> itemCategory : m_game.itemCategoryHashMap.entrySet()) {
-            System.out.println("itemCategoryHashMap Key: " + itemCategory.getKey());
-            System.out.println("itemCategoryHashMap Value: " + itemCategory.getValue());
-        }
-
         m_game.itemHashMap = getItemHashMap(databaseConnection);
-
-        for (Map.Entry<Integer, Item> item : m_game.itemHashMap.entrySet()) {
-            System.out.println("itemHashMap Key: " + item.getKey());
-            System.out.println("itemHashMap Value: " + item.getValue());
-        }
-
         m_game.scenarioHashMap = getScenarioHashMap(databaseConnection);
-
-        for (Map.Entry<Integer, Scenario> scenario : m_game.scenarioHashMap.entrySet()) {
-            System.out.println("scenarioHashMap Key: " + scenario.getKey());
-            System.out.println("scenarioHashMap Value: " + scenario.getValue());
-        }
-
         m_game.choiceHashMap = getChoiceHashMap(databaseConnection);
-
-        for (Map.Entry<Integer, Choice> choice : m_game.choiceHashMap.entrySet()) {
-            System.out.println("choiceHashMap Key: " + choice.getKey());
-            System.out.println("choiceHashMap Value: " + choice.getValue());
-        }
-
         m_game.scenarioChoiceArrayList = getScenarioChoiceArrayList(databaseConnection);
-
-        for (ScenarioChoice scenarioChoice : m_game.scenarioChoiceArrayList) {
-            System.out.println(scenarioChoice.toString());
-        }
     }
 
     /**
