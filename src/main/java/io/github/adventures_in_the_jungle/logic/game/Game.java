@@ -1,13 +1,15 @@
 package io.github.adventures_in_the_jungle.logic.game;
 
-import java.io.Serializable;
+import io.github.adventures_in_the_jungle.logic.database.objects.*;
+import io.github.adventures_in_the_jungle.logic.game.item.properties.IStorable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Singleton class to manage the current state of the game.
  */
-public class Game implements Serializable {
+public class Game {
 
     /**
      * Singleton instance of the game object.
@@ -42,12 +44,14 @@ public class Game implements Serializable {
     /**
      * Collection to store the current inventory of the player.
      */
-    public ArrayList<Item> inventory;
+    public ArrayList<IStorable> inventory;
 
     /**
      * Represents the current scenario in which the player is positioned.
      */
     private Scenario currentScenario;
+
+    private Inventory userInventory;
 
     /**
      * Private constructor to initialize the singleton instance of Game.

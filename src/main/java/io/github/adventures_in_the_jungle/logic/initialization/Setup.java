@@ -2,6 +2,7 @@ package io.github.adventures_in_the_jungle.logic.initialization;
 
 import io.github.adventures_in_the_jungle.Main;
 import io.github.adventures_in_the_jungle.logic.database.DatabaseConnection;
+import io.github.adventures_in_the_jungle.logic.database.objects.*;
 import io.github.adventures_in_the_jungle.logic.game.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
