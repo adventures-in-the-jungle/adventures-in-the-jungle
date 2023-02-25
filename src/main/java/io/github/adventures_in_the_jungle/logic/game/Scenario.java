@@ -1,5 +1,6 @@
 package io.github.adventures_in_the_jungle.logic.game;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -79,20 +80,19 @@ public class Scenario {
      *
      * @return A map containing the choices that correspond to the current ID of Scenario.
      */
-    public HashMap<Integer, Choice> getChoiceCollection() {
-        Game game = Game.getInstance();
+    public ArrayList<Choice> getChoiceCollection() {
 
-        HashMap<Integer, Choice> choiceHashMap = new HashMap<Integer, Choice>();
+        Game game = Game.getInstance();
+        ArrayList<Choice> choices = new ArrayList<Choice>();
 
         for (ScenarioChoice scenarioChoice : game.scenarioChoiceArrayList) {
             // Check to see if the object in the singleton set matches with the ID of the current object.
-            if (scenarioChoice.getChoiceID() == this.getScenarioID()) {
-                Choice choice = game.choiceHashMap.get(scenarioChoice.getChoiceID());
-                choiceHashMap.put(this.getScenarioID(), choice);
+            if (scenarioChoice.getScenarioID() == this.getScenarioID()) {
+                choices.add(game.choiceHashMap.get(scenarioChoice.getChoiceID()));
             }
         }
 
-        return choiceHashMap;
+        return choices;
     }
 
     /**

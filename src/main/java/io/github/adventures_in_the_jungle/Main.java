@@ -7,6 +7,7 @@ import io.github.adventures_in_the_jungle.logic.initialization.Setup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -46,16 +47,19 @@ public class Main {
                 break;
             }
 
+            ArrayList<Choice> choices = currentScenario.getChoiceCollection();
+
             // Print the choices
-            for (Map.Entry<Integer, Choice> choice : currentScenario.getChoiceCollection().entrySet()) {
-                System.out.println("[" + choice.getKey() + "] " + choice.getValue().getChoiceText());
+            for(int i = 0; i < choices.size(); i++)
+            {
+                System.out.println("[" + (i + 1) + "] " + choices.get(i).getChoiceText());
             }
 
             // Get the player's choice
             System.out.print("> ");
-            int choiceId = scanner.nextInt();
+            int choiceId = scanner.nextInt() - 1;
 
-            Choice choiceObject = game.choiceHashMap.get(choiceId);
+            Choice choiceObject = choices.get(choiceId);
 
             // Get the scenario that the chosen choice leads to
             int leadsTo = choiceObject.getChoiceLeadsTo();
