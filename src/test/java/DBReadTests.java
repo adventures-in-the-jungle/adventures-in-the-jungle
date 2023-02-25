@@ -91,7 +91,9 @@ public class DBReadTests {
      */
     @Test
     public void ComplexDBReadTest() {
+
         Game game = Game.getInstance();
+        Setup.SQLSetup(game);
 
         for (Map.Entry<Integer, ItemCategory> itemCategory : game.itemCategoryHashMap.entrySet()) {
             System.out.println("itemCategoryHashMap Key: " + itemCategory.getKey());
