@@ -1,7 +1,8 @@
-package io.github.adventures_in_the_jungle.logic.game;
+package io.github.adventures_in_the_jungle.logic.database.objects;
+
+import io.github.adventures_in_the_jungle.logic.game.Game;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Scenario Class is different from the Room Class this will hold the Scenario methods,

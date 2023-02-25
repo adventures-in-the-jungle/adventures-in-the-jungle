@@ -1,4 +1,4 @@
-package io.github.adventures_in_the_jungle.logic.game;
+package io.github.adventures_in_the_jungle.logic.database.objects;
 
 public class ItemCategory {
 

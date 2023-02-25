@@ -1,4 +1,6 @@
-package io.github.adventures_in_the_jungle.logic.game;
+package io.github.adventures_in_the_jungle.logic.database.objects;
+
+import io.github.adventures_in_the_jungle.logic.game.Game;
 
 public class Choice {
 
