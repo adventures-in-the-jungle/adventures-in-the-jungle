@@ -21,3 +21,4 @@ buildNumber.properties
 
 # Exclude Log Files
 /logs
+*.log
