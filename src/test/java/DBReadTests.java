@@ -92,6 +92,13 @@ public class DBReadTests {
     @Test
     public void ComplexDBReadTest() {
 
+        try {
+            Setup.FirstTimeSetup();
+        } catch (Exception e) {
+            System.out.println("The process of copying the database to the user's home directory failed!");
+            assert false;
+        }
+
         Game game = Game.getInstance();
         Setup.SQLSetup(game);
 
