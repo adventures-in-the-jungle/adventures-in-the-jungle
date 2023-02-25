@@ -5,7 +5,13 @@ public class CustomCalendarTest {
 
     @Test
     public void CustomCalendarTest() {
-        System.out.println(Commands.GetCommandFeedback(Commands.TIME));
-    }
 
+        String output = Commands.GetCommandFeedback(Commands.TIME);
+
+        System.out.println(output);
+
+        if (output.endsWith("日本標準時")) assert true;
+        else assert false;
+
+    }
 }
