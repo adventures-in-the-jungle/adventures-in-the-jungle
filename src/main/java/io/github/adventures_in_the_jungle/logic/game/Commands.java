@@ -38,7 +38,7 @@ public enum Commands {
         switch (m_command)
         {
             case HELP -> feedback = "Please enter in a command containing your choice or type in EXIT to end the program.\n";
-            case EXIT -> feedback = "The program has ended. Thank you for playing!\n";
+            case EXIT -> System.exit(0);
             case TIME -> feedback = "The current time in Tokyo is " + Commands.GetJapanDateTime() + "\n";
         }
         return feedback;

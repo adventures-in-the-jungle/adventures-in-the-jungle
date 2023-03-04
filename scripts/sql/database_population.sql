@@ -48,13 +48,16 @@ INSERT INTO SCENARIO (SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAY
 
 INSERT INTO SCENARIO (SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAYER_WON) VALUES (18, 'You begin walking down the path to the north this path has high grass but thanks to the mushroom you collected earlier, any potential threats have been deterred. You continue walking and find a corpse.', 0, 0);
 -- Something has stolen all your food while you were walking through the tall grass. (CHOICE feedback)
---INSERT INTO SCENARIO (SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAYER_WON) VALUES (19, 'You notice the corpse is of a tribal man, they have a broken spear in their back and are decaying.', 0, 0);
+
+--Scenario if you have food to eat and move on--
+INSERT INTO SCENARIO(SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAYER_WON) VALUES (19,'You eat and have energy to continue the journey down this path. You notice a spear laying on the path.',0,0);
+
 -- You took the maggots (CHOICE Feedback)
 INSERT INTO SCENARIO (SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAYER_WON) VALUES (20, 'You have reached a cross roads. You notice that both the north and south paths are less overgrown than the eastern path.', 0, 0);
 INSERT INTO SCENARIO (SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAYER_WON) VALUES (21, 'You begin to walk east through the overgrown path. Suddenly you are falling. You have fallen into a spike pit and have died.', 1, 0);
 INSERT INTO SCENARIO (SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAYER_WON) VALUES (22, 'You have been walking for quite some distance. And are getting very hungry.', 0, 0);
 
-INSERT INTO SCENARIO (SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAYER_WON) VALUES (23, 'You end up finding a tribe. The tribe does not kill you right away but is very wary of you. Eventually you gain the trust of the tribe.You even learned the language',1,1);
+INSERT INTO SCENARIO (SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAYER_WON) VALUES (23, 'You end up finding a tribe. The tribe does not kill you right away but is very wary of you. Eventually you gain the trust of the tribe.You even learned the language', 0, 0);
 
 -- Ending Scenario without Spear Staying with the Tribe = WIN --
 INSERT INTO SCENARIO (SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAYER_WON) VALUES (24, 'You decide to stay with the tribe. You help them in the tribal war and get injured. However they help you and the tribe ends up winning. However you miss your family. You ask the tribe if they know and could lead you out of the bog. You explain to the tribe that you are grateful for everything but have a family to return to. The tribe explains that they understand and are thankful for everything you have done for them. They guide you to the exit of the bog. Eventually you reunite with your family and explain everything. You are grateful that you were able to repay the tribe for everything.',1,1);
@@ -66,7 +69,7 @@ INSERT INTO SCENARIO (SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAY
 INSERT INTO SCENARIO (SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAYER_WON) VALUES (26, 'The tribe sees the spear you have and attacks you immediately. You have died.', 1,0);
 
 -- Scenario to set up loop back to 2b1 --
-INSERT INTO SCENARIO(SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAYER_WON) VALUES (27, 'You continue walking without eating but a very low on energy.', 0,0);
+--INSERT INTO SCENARIO(SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAYER_WON) VALUES (27, 'You continue walking without eating but a very low on energy.', 0,0);
 
 --Scenario walk south Dangerous Tribe
 INSERT INTO SCENARIO(SCENARIO_ID, SCENARIO_TEXT, SCENARIO_IS_END, SCENARIO_PLAYER_WON) VALUES(28, 'You have been walking for quite some distance. And are getting very hungry.', 0,0);
@@ -152,8 +155,8 @@ INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_IT
         -- Death (Spike pit)
         INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_ITEM, CHOICE_USABLE_ITEM_CATEGORY, CHOICE_FEEDBACK) VALUES (22, 'WALK EAST', 21, NULL, NULL, NULL);
         -- Go North
-        INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_ITEM, CHOICE_USABLE_ITEM_CATEGORY, CHOICE_FEEDBACK) VALUES (23, 'WALK NORTH', 28, NULL, NULL, NULL);
-            INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_ITEM, CHOICE_USABLE_ITEM_CATEGORY, CHOICE_FEEDBACK) VALUES (24, 'USE FOOD', 29, NULL, NULL, NULL);
+        INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_ITEM, CHOICE_USABLE_ITEM_CATEGORY, CHOICE_FEEDBACK) VALUES (23, 'WALK NORTH', 22, NULL, NULL, NULL);
+            INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_ITEM, CHOICE_USABLE_ITEM_CATEGORY, CHOICE_FEEDBACK) VALUES (24, 'USE FOOD', 19, NULL, NULL, NULL);
                 -- Death (Take Spear)
                 INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_ITEM, CHOICE_USABLE_ITEM_CATEGORY, CHOICE_FEEDBACK) VALUES (25, 'TAKE SPEAR', 26, 4, NULL, 'You pick up the spear and continue walking. You end up finding a tribe.');
                 INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_ITEM, CHOICE_USABLE_ITEM_CATEGORY, CHOICE_FEEDBACK) VALUES (26, 'CONTINUE WALKING', 23, NULL, NULL, NULL);
@@ -162,7 +165,7 @@ INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_IT
                     -- Win
                     INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_ITEM, CHOICE_USABLE_ITEM_CATEGORY, CHOICE_FEEDBACK) VALUES (28, 'ASK FOR EXIT', 25, NULL, NULL, NULL);
                 -- Loop
-                INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_ITEM, CHOICE_USABLE_ITEM_CATEGORY, CHOICE_FEEDBACK) VALUES (29, 'DONT EAT', 27, NULL, NULL, NULL);
+                INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_ITEM, CHOICE_USABLE_ITEM_CATEGORY, CHOICE_FEEDBACK) VALUES (29, 'DONT EAT', 8 , NULL, NULL, 'You continue walking without eating but a very low on energy.');
 
 -- Walk South ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- Hostile TRIBE vvv
 INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_ITEM, CHOICE_USABLE_ITEM_CATEGORY, CHOICE_FEEDBACK) VALUES (30, 'WALK SOUTH', 28, NULL, NULL, NULL);
@@ -241,11 +244,17 @@ INSERT INTO SCENARIO_CHOICE(SCENARIO_ID, CHOICE_ID) VALUES(20,22); --WALK EAST
 INSERT INTO SCENARIO_CHOICE(SCENARIO_ID, CHOICE_ID) VALUES(20,23); --WALK NORTH
 INSERT INTO SCENARIO_CHOICE(SCENARIO_ID, CHOICE_ID) VALUES(20,30); --WALK SOUTH
 
---Scenario : from Scenario 30
-INSERT INTO SCENARIO_CHOICE(SCENARIO_ID, CHOICE_ID) VALUES(28,30); --WALK SOUTH
---Scenario : from Scenario 20
---Scenario : from Scenario 20
+--Scenario : go north from Scenario 20
+INSERT INTO SCENARIO_CHOICE(SCENARIO_ID, CHOICE_ID) VALUES(22,24); -- USE FOOD
+INSERT INTO SCENARIO_CHOICE(SCENARIO_ID, CHOICE_ID) VALUES(22,29); -- DONT EAT
 
+--Scenario : USE food from Scenario 22
+INSERT INTO SCENARIO_CHOICE(SCENARIO_ID, CHOICE_ID) VALUES(19,25); -- TAKE SPEAR
+INSERT INTO SCENARIO_CHOICE(SCENARIO_ID, CHOICE_ID) VALUES(19,26); -- DONT TAKE SPEAR
+
+--Scenario : dont take spear from Scenario 23
+INSERT INTO SCENARIO_CHOICE(SCENARIO_ID, CHOICE_ID) VALUES(23,27); -- STAY WITH TRIBE
+INSERT INTO SCENARIO_CHOICE(SCENARIO_ID, CHOICE_ID) VALUES(23,28); -- ASK HOW TO LEAVE THE BOG
 
 -- region Go South from Scenario 20
 -- Scenario 28: "Getting Hungry."

@@ -1,8 +1,6 @@
 package io.github.adventures_in_the_jungle.logic.database.objects;
 
-import io.github.adventures_in_the_jungle.logic.game.item.properties.INamable;
-
-public class Item implements INamable {
+public class Item {
 
     private int itemID;
 
@@ -43,10 +41,5 @@ public class Item implements INamable {
     public String toString()
     {
         return this.itemID + "," + this.itemName + "," + this.itemDescription;
-    }
-
-    @Override
-    public String getName() {
-        return this.getItemName();
     }
 }

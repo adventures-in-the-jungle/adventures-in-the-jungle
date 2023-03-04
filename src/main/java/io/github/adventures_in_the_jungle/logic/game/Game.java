@@ -1,7 +1,6 @@
 package io.github.adventures_in_the_jungle.logic.game;
 
 import io.github.adventures_in_the_jungle.logic.database.objects.*;
-import io.github.adventures_in_the_jungle.logic.game.item.properties.IStorable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
