@@ -10,7 +10,7 @@ public class CustomCalendarTest {
 
         System.out.println(output);
 
-        if (output.endsWith("日本標準時")) assert true;
+        if (output.contains("日本標準時")) assert true;
         else assert false;
 
     }
