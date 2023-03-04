@@ -1,5 +1,7 @@
 package io.github.adventures_in_the_jungle.logic.game;
 
+import io.github.adventures_in_the_jungle.Main;
+
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -13,10 +15,10 @@ public enum Commands {
 
     /**
      * Retrieves the current date and time in Tokyo, in the Japanese language.
+     *
      * @return A string formatted in the Japanese locale.
      */
-    private static String GetJapanDateTime()
-    {
+    private static String GetJapanDateTime() {
         // Create a new date with the time zone of Tokyo.
         ZonedDateTime japanTime = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
 
@@ -29,16 +31,17 @@ public enum Commands {
 
     /**
      * A static helper method to manage commands passed to the program.
+     *
      * @param m_command The command passed to the program.
      * @return A string containing the command feedback.
      */
-    public static String GetCommandFeedback(Commands m_command)
-    {
-        String feedback = new String();
-        switch (m_command)
-        {
-            case HELP -> feedback = "Please enter in a command containing your choice or type in EXIT to end the program.\n";
-            case EXIT -> System.exit(0);
+    public static String GetCommandFeedback(Commands m_command) {
+        String feedback = "";
+        switch (m_command) {
+            case HELP ->
+                    feedback = "Please enter in a command containing your choice or type in EXIT to end the program.\n"
+                        + "Here are the following options available for you to select:\n";
+            case EXIT -> Main.Endgame(null);
             case TIME -> feedback = "The current time in Tokyo is " + Commands.GetJapanDateTime() + "\n";
         }
         return feedback;

@@ -2,69 +2,67 @@ package io.github.adventures_in_the_jungle.logic.database.objects;
 
 import io.github.adventures_in_the_jungle.logic.game.Game;
 
-public class Choice {
+public class Choice implements IChoosable {
 
-    private int choiceID;
+    private final Integer choiceID;
 
-    private String choiceText;
+    private final String choiceText;
 
-    private int choiceLeadsTo;
+    private final Integer choiceLeadsTo;
 
-    private int choiceFetchableItem;
+    private final Integer choiceFetchableItem;
 
-    private int choiceUsableItem;
+    private final Integer choiceUsableItemCategory;
 
-    private String choiceFeedback;
+    private final String choiceFeedback;
 
-    public Choice(int m_choiceID, String m_choiceText, int m_choiceLeadsTo, int m_choiceFetchableItem, int m_choiceUsableItem, String m_choiceFeedback)
-    {
+    public Choice(int m_choiceID, String m_choiceText, int m_choiceLeadsTo, int m_choiceFetchableItem, int m_choiceUsableItem, String m_choiceFeedback) {
         this.choiceID = m_choiceID;
         this.choiceText = m_choiceText;
         this.choiceLeadsTo = m_choiceLeadsTo;
-        this.choiceUsableItem = m_choiceFetchableItem;
-        this.choiceUsableItem = m_choiceUsableItem;
+        this.choiceFetchableItem = m_choiceFetchableItem;
+        this.choiceUsableItemCategory = m_choiceUsableItem;
         this.choiceFeedback = m_choiceFeedback;
     }
 
-    public int getChoiceID() {
+    public Integer getChoiceID() {
         return choiceID;
     }
 
+    @Override
     public String getChoiceText() {
         return choiceText;
     }
 
-    public int getChoiceLeadsTo() {
+    public Integer getChoiceLeadsTo() {
         return choiceLeadsTo;
     }
 
-    public Scenario getChoiceLeadsToObject()
-    {
+    public Scenario getChoiceLeadsToObject() {
         Game game = Game.getInstance();
         Scenario scenario = game.scenarioHashMap.get(this.getChoiceID());
 
         return scenario;
     }
 
-    public int getChoiceFetchableItem() {
+    public Integer getChoiceFetchableItem() {
         return choiceFetchableItem;
     }
 
-    public Item getChoiceFetchableItemObject()
-    {
+    public Item getChoiceFetchableItemObject() {
         Game game = Game.getInstance();
         Item item = game.itemHashMap.get(this.getChoiceFetchableItem());
 
         return item;
     }
-    public int getChoiceUsableItem() {
-        return choiceUsableItem;
+
+    public Integer getChoiceUsableCategory() {
+        return choiceUsableItemCategory;
     }
 
-    public Item getChoiceUsableItemObject()
-    {
+    public ItemCategory getChoiceUsableItemCategoryObject() {
         Game game = Game.getInstance();
-        Item item = game.itemHashMap.get(this.getChoiceUsableItem());
+        ItemCategory item = game.itemCategoryHashMap.get(this.getChoiceUsableCategory());
 
         return item;
     }
@@ -74,9 +72,8 @@ public class Choice {
     }
 
     @Override
-    public String toString()
-    {
-        return this.choiceID + "," + this.choiceText + "," + this.choiceLeadsTo + "," + this.choiceFetchableItem + "," + this.choiceUsableItem + "," + this.choiceFeedback;
+    public String toString() {
+        return this.choiceID + "," + this.choiceText + "," + this.choiceLeadsTo + "," + this.choiceFetchableItem + "," + this.choiceUsableItemCategory + "," + this.choiceFeedback;
     }
 
 }

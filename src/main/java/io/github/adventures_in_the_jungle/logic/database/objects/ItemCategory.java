@@ -1,11 +1,14 @@
 package io.github.adventures_in_the_jungle.logic.database.objects;
 
+/**
+ * Class that represents the ITEM_CATEGORY table in the database.
+ */
 public class ItemCategory {
 
     /**
      * Represents the primary key of the item category in the database.
      */
-    private final int itemCategoryID;
+    private final Integer itemCategoryID;
 
     /**
      * Represents the name of the item category.
@@ -37,7 +40,7 @@ public class ItemCategory {
      *
      * @return The value in itemCategoryID.
      */
-    public int getItemCategoryID() {
+    public Integer getItemCategoryID() {
         return itemCategoryID;
     }
 
@@ -59,9 +62,13 @@ public class ItemCategory {
         return itemCategoryDescription;
     }
 
+    /**
+     * Queries the CSV data contained in the corresponding ITEM_CATEGORY database table.
+     *
+     * @return A String object containing the CSV data.
+     */
     @Override
-    public String toString()
-    {
+    public String toString() {
         return this.itemCategoryID + "," + this.itemCategoryName + "," + this.itemCategoryDescription;
     }
 }
