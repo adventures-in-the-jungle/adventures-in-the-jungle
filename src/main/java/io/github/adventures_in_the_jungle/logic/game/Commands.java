@@ -1,7 +1,5 @@
 package io.github.adventures_in_the_jungle.logic.game;
 
-import java.text.DateFormat;
-import java.text.Format;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -39,9 +37,9 @@ public enum Commands {
         String feedback = new String();
         switch (m_command)
         {
-            case HELP -> feedback = "Please enter in a command containing your choice or type in EXIT to end the program.";
-            case EXIT -> feedback = "The program has ended. Thank you for playing!";
-            case TIME -> feedback = "The current time in Tokyo is " + Commands.GetJapanDateTime();
+            case HELP -> feedback = "Please enter in a command containing your choice or type in EXIT to end the program.\n";
+            case EXIT -> feedback = "The program has ended. Thank you for playing!\n";
+            case TIME -> feedback = "The current time in Tokyo is " + Commands.GetJapanDateTime() + "\n";
         }
         return feedback;
     }

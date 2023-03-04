@@ -44,14 +44,15 @@ public class Game {
     /**
      * Collection to store the current inventory of the player.
      */
-    public ArrayList<IStorable> inventory;
+    public ArrayList<Item> inventory;
 
     /**
      * Represents the current scenario in which the player is positioned.
      */
     private Scenario currentScenario;
 
-    private Inventory userInventory;
+    // TODO Implement Inventory
+    // private Inventory userInventory;
 
     /**
      * Private constructor to initialize the singleton instance of Game.

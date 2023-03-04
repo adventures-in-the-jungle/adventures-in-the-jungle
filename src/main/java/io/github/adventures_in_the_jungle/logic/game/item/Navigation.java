@@ -9,4 +9,5 @@ public class Navigation extends Item implements IStorable {
         super(m_itemID, m_itemName, m_itemDescription);
     }
 
+
 }

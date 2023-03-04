@@ -1,14 +1,14 @@
 package io.github.adventures_in_the_jungle;
 
 import io.github.adventures_in_the_jungle.logic.database.objects.Choice;
-import io.github.adventures_in_the_jungle.logic.game.Game;
 import io.github.adventures_in_the_jungle.logic.database.objects.Scenario;
+import io.github.adventures_in_the_jungle.logic.game.Commands;
+import io.github.adventures_in_the_jungle.logic.game.Game;
 import io.github.adventures_in_the_jungle.logic.initialization.Setup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -82,46 +82,62 @@ public class Main {
             // the currentScenario object.
             ArrayList<Choice> choices = currentScenario.getChoiceCollection();
 
-            // TODO Determine if the choices involve food (if the scenario has a usable item).
-
             // Create a do-while loop to validate the user input for the choices.
 
             boolean userInputIsValid = false;
 
             do {
-                try {
+                // TODO Determine if the choices involve food (if the scenario has a usable item).
+                // First, we will check whether or not any of the scenario's have a usable item.
 
-                    // In this instance, we will use a for-loop rather than a for-each-loop, since we will provide the options
-                    // to the user in an index-based format.
-                    for (int i = 0; i < choices.size(); i++) {
-                        System.out.println("[" + (i + 1) + "] " + choices.get(i).getChoiceText());
+                // In this instance, we will use a for-loop rather than a for-each-loop, since we will provide the options
+                // to the user in an index-based format.
+                for (int i = 0; i < choices.size(); i++) {
+                    System.out.println("[" + (i + 1) + "] " + choices.get(i).getChoiceText());
+                }
+
+                // Get the player's choice and store it in the choiceID.
+                System.out.print("> ");
+                String userInput = scanner.next();
+
+                // First, we will test the user input to see if it contains a valid command.
+                try {
+                    Commands inputCommand = null;
+                    inputCommand = Commands.valueOf(userInput.toUpperCase());
+
+                    // If the command is valid, we will query the corresponding command input.
+                    System.out.print(Commands.GetCommandFeedback(inputCommand));
+                }
+
+                catch (IllegalArgumentException invalidCommandException) {
+
+                    // Otherwise, we will test to see if the user input contains an integer
+                    try
+                    {
+                        Integer choiceID = Integer.parseInt(userInput) - 1;
+                        Choice choiceObject = choices.get(choiceID);
+
+                        // After the user has made the corresponding choice, query the object that it corresponds to in the collection.
+                        if (choiceObject.getChoiceFeedback() != null) System.out.println(choiceObject.getChoiceFeedback());
+
+                        // Get the scenario that the chosen choice leads to
+                        int leadsTo = choiceObject.getChoiceLeadsTo();
+                        currentScenarioId = leadsTo;
+                        userInputIsValid = true;
+                    }
+                    catch (NumberFormatException numberFormatException)
+                    {
+                        logger.error("You did not type in a valid number! Please try again!");
+                        userInputIsValid = false;
+                    }
+                    catch (IndexOutOfBoundsException indexOutOfBoundsException)
+                    {
+                        logger.error("You did not select a valid choice ID. Please try again.");
+                        userInputIsValid = false;
                     }
 
-                    // Get the player's choice and store it in the choiceID.
-                    System.out.print("> ");
-                    String userInput = scanner.next();
-                    Integer choiceID = Integer.parseInt(userInput) - 1;
-
-                    Choice choiceObject = choices.get(choiceID);
-
-                    // After the user has made the corresponding choice, query the object that it corresponds to in the collection.
-                    if (choiceObject.getChoiceFeedback() != null) System.out.println(choiceObject.getChoiceFeedback());
-
-                    // Get the scenario that the chosen choice leads to
-                    int leadsTo = choiceObject.getChoiceLeadsTo();
-                    currentScenarioId = leadsTo;
-                    userInputIsValid = true;
-
-                } catch (IndexOutOfBoundsException e) {
-                    logger.error("The index was out of bounds for the selection! Please try again.");
-                    userInputIsValid = false;
-                } catch (NumberFormatException e) {
-                    logger.error("The input was invalid! Please type in a number corresponding to your selection.");
-                    userInputIsValid = false;
-                } catch (Error e) {
-                    logger.error("There was an unusual error! Please contact your nearest software developer for assistance.");
-                    userInputIsValid = false;
                 }
+
             } while (!userInputIsValid);
 
         }
