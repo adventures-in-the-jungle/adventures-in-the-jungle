@@ -1,7 +1,8 @@
-package io.github.adventures_in_the_jungle.logic.game;
+package io.github.adventures_in_the_jungle.logic.database.objects;
+
+import io.github.adventures_in_the_jungle.logic.game.Game;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Scenario Class is different from the Room Class this will hold the Scenario methods,
@@ -13,7 +14,7 @@ public class Scenario {
     /**
      * Represents the ID that corresponds to the scenario.
      */
-    private final int scenarioID;
+    private final Integer scenarioID;
 
     /**
      * Represents the text that corresponds to the scenario.
@@ -24,13 +25,13 @@ public class Scenario {
     /**
      * Represents whether or not the scenario is an ending scenario.
      */
-    private final boolean scenarioIsEnd;
+    private final Boolean scenarioIsEnd;
 
     /**
      * Assuming the scenario IS an ending scenario, this boolean represents
      * whether or not the ending scenario is a winning scenario.
      */
-    private final boolean scenarioIsWon;
+    private final Boolean scenarioIsWon;
 
     public Scenario(int m_scenarioID, String m_scenarioText, boolean m_scenarioIsEnd, boolean m_scenarioIsWon) {
         this.scenarioID = m_scenarioID;
@@ -44,7 +45,7 @@ public class Scenario {
      *
      * @return The value that corresponds to the scenario's ID in the database.
      */
-    public int getScenarioID() {
+    public Integer getScenarioID() {
         return this.scenarioID;
     }
 
@@ -62,7 +63,7 @@ public class Scenario {
      *
      * @return The value that corresponds to whether or not the scenario is an ending scenario (dead end).
      */
-    public boolean getScenarioIsEnd() {
+    public Boolean getScenarioIsEnd() {
         return this.scenarioIsEnd;
     }
 
@@ -71,7 +72,7 @@ public class Scenario {
      *
      * @return The value that corresponds to whether or not the ending scenario is a winning scenario.
      */
-    public boolean getScenarioIsWon() {
+    public Boolean getScenarioIsWon() {
         return this.scenarioIsWon;
     }
 

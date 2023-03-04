@@ -2,6 +2,7 @@ package io.github.adventures_in_the_jungle.logic.initialization;
 
 import io.github.adventures_in_the_jungle.Main;
 import io.github.adventures_in_the_jungle.logic.database.DatabaseConnection;
+import io.github.adventures_in_the_jungle.logic.database.objects.*;
 import io.github.adventures_in_the_jungle.logic.game.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -111,7 +112,7 @@ public abstract class Setup {
             while (resultSet.next()) {
                 int itemID = resultSet.getInt("ITEM_ID");
                 String itemName = resultSet.getString("ITEM_NAME");
-                int itemDescription = resultSet.getInt("ITEM_DESCRIPTION");
+                int itemDescription = resultSet.getInt("ITEM_CATEGORY");
 
                 Item itemCategory = new Item(itemID, itemName, itemDescription);
                 hashMap.put(itemID, itemCategory);
@@ -173,12 +174,12 @@ public abstract class Setup {
 
         try {
             while (resultSet.next()) {
-                // INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_ITEM, CHOICE_USABLE_ITEM, CHOICE_FEEDBACK)
+                // INSERT INTO CHOICE (CHOICE_ID, CHOICE_TEXT, CHOICE_LEADS_TO, CHOICE_FETCHABLE_ITEM, CHOICE_USABLE_ITEM_CATEGORY, CHOICE_FEEDBACK)
                 int choiceID = resultSet.getInt("CHOICE_ID");
                 String choiceText = resultSet.getString("CHOICE_TEXT");
                 int choiceLeadsTo = resultSet.getInt("CHOICE_LEADS_TO");
                 int choiceFetchableItem = resultSet.getInt("CHOICE_FETCHABLE_ITEM");
-                int choiceUsableItem = resultSet.getInt("CHOICE_USABLE_ITEM");
+                int choiceUsableItem = resultSet.getInt("CHOICE_USABLE_ITEM_CATEGORY");
                 String choiceFeedback = resultSet.getString("CHOICE_FEEDBACK");
 
                 Choice choice = new Choice(choiceID, choiceText, choiceLeadsTo, choiceFetchableItem, choiceUsableItem, choiceFeedback);

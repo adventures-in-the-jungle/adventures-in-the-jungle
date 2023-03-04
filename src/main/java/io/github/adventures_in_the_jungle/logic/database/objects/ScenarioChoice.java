@@ -1,13 +1,12 @@
-package io.github.adventures_in_the_jungle.logic.game;
+package io.github.adventures_in_the_jungle.logic.database.objects;
 
 public class ScenarioChoice {
 
-    private int scenarioID;
+    private final Integer scenarioID;
 
-    private int choiceID;
+    private final Integer choiceID;
 
-    public ScenarioChoice(int m_scenarioID, int m_choiceID)
-    {
+    public ScenarioChoice(int m_scenarioID, int m_choiceID) {
         this.scenarioID = m_scenarioID;
         this.choiceID = m_choiceID;
     }
@@ -21,8 +20,7 @@ public class ScenarioChoice {
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return this.scenarioID + "," + this.choiceID;
     }
 }
