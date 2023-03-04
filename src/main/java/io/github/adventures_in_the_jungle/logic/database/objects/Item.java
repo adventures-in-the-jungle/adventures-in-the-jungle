@@ -54,13 +54,12 @@ public class Item implements IChoosable {
     }
 
     /**
-     * Gets the name of the item (implements the IChoosable
+     * Gets the name of the item (implementation of the IChoosable interface).
      *
-     * @return
+     * @return The name of the item.
      */
     @Override
-    public String getChoiceText()
-    {
+    public String getChoiceText() {
         return this.getItemName();
     }
 

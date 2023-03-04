@@ -146,19 +146,26 @@ public class Main {
             // Then, we will fetch the object of the item type that corresponds to the item, and see if it equals "Food"
             Boolean choiceRequiresFood = false;
 
+            // Then, I will declare a Choice object for later use to store the information about the choice which
+            // required food (if any did require food).
+            Choice choiceWhichRequiredFood = null;
+
             // We will then loop through all the choices to see if they require food.
             for (Choice choice : choices) {
-                if (choice.getChoiceUsableItemCategoryObject() != null && choice.getChoiceUsableItemCategoryObject().getItemCategoryName().equals("Food"))
+                if (choice.getChoiceUsableItemCategoryObject() != null && choice.getChoiceUsableItemCategoryObject().getItemCategoryName().equals("Food")) {
                     choiceRequiresFood = true;
+                    choiceWhichRequiredFood = choice;
+                }
             }
 
             // If the choice requires food, we will present the user's lunchbox for consumption.
             if (choiceRequiresFood) {
+
                 // Finally, we will test to see if there are any items in the inventory that correspond to the type of "Food"
                 // To do this, we first need to filter out all edible items in the inventory into its own ArrayList.
-                ArrayList<IChoosable> lunchbox = new ArrayList<>();
+                ArrayList<Item> lunchbox = new ArrayList<>();
 
-                for (Item item : game.inventory) {
+                for (Item item : Main.game.inventory) {
                     if (item.getItemCategoryObject().getItemCategoryName().equals("Food")) {
                         lunchbox.add(item);
                     }
@@ -172,15 +179,27 @@ public class Main {
                     Endgame(false);
                 }
 
-                // If the choice requires food, and the
+                // If the choice requires food, and the user has food, prompt the user for the food items to consume.
                 else if (choiceRequiresFood && userHasFood) {
-                    Integer userChoice = Main.ChooseItem(lunchbox);
-                    Main.game.inventory.forEach((x) -> x = null);
+                    Integer chosenFoodItem = Main.ChooseItem(lunchbox);
+
+                    // Display to the user that the food item was eaten.
+                    System.out.println("You ate " + lunchbox.get(chosenFoodItem).getItemName());
+
+                    // Then, remove the food item from the inventory after consumption.
+                    Main.game.inventory.remove(lunchbox.get(chosenFoodItem));
+
+                    // Then, query the scenario ID that corresponds to choice in which the food item was eaten,
+                    // and go the corresponding direction.
+                    currentScenarioId = choiceWhichRequiredFood.getChoiceLeadsTo();
+
+                    gameIsOver = false;
                 }
             }
 
             // Otherwise, we will present the different directions toward which the user could go.
             else {
+
                 // Once the scenario has been queried from the Game singleton, we will print out the text within that object.
                 System.out.println(currentScenario.getScenarioText());
 
@@ -196,6 +215,11 @@ public class Main {
 
                 Integer choiceID = Main.ChooseItem(choices);
                 Choice choiceObject = choices.get(choiceID);
+
+                if(choiceObject.getChoiceFetchableItemObject() != null)
+                {
+                    Main.game.inventory.add(choiceObject.getChoiceFetchableItemObject());
+                }
 
                 // After the user has made the corresponding choice, query the object that it corresponds to in the collection.
                 if (choiceObject.getChoiceFeedback() != null) System.out.println(choiceObject.getChoiceFeedback());

@@ -50,14 +50,11 @@ public class Game {
      */
     private Scenario currentScenario;
 
-    // TODO Implement Inventory
-    // private Inventory userInventory;
-
     /**
      * Private constructor to initialize the singleton instance of Game.
      */
     private Game() {
-
+        this.inventory = new ArrayList<Item>();
     }
 
     /**

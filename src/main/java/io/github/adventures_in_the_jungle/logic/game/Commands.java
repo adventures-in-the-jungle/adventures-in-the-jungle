@@ -11,7 +11,7 @@ import java.util.Locale;
  * An enumeration to manage the commands passed to the program.
  */
 public enum Commands {
-    HELP, TIME, EXIT;
+    HELP, TIME, EXIT, INVENTORY;
 
     /**
      * Retrieves the current date and time in Tokyo, in the Japanese language.
@@ -38,11 +38,21 @@ public enum Commands {
     public static String GetCommandFeedback(Commands m_command) {
         String feedback = "";
         switch (m_command) {
-            case HELP ->
-                    feedback = "Please enter in a command containing your choice or type in EXIT to end the program.\n"
-                        + "Here are the following options available for you to select:\n";
-            case EXIT -> Main.Endgame(null);
-            case TIME -> feedback = "The current time in Tokyo is " + Commands.GetJapanDateTime() + "\n";
+            case HELP:
+                feedback = "Please enter in a command containing your choice or type in EXIT to end the program.\n" + "Here are the following options available for you to select:\n";
+                break;
+            case EXIT:
+                Main.Endgame(null);
+                break;
+            case TIME:
+                feedback = "The current time in Tokyo is " + Commands.GetJapanDateTime() + "\n";
+                break;
+            case INVENTORY:
+                Game game = Game.getInstance();
+                for (int i = 0; i < game.inventory.size(); i++) {
+                    feedback += "[" + (i + 1) + "] " + game.inventory.get(i).getItemName() + "\n";
+                }
+                break;
         }
         return feedback;
     }
